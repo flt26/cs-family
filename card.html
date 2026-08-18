@@ -1,0 +1,69 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>كارت العضوية — عيلة دفعة CS</title><meta name="theme-color" content="#8E1418">
+<link rel="manifest" href="manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Lalezar&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#241A10;--maroon:#8E1418;--gold:#E0A82E;--muted:#8A7358;--rule:#D9CDB4}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:Tajawal,system-ui,sans-serif;color:var(--ink);background:#E5DAC4 url(assets/paper.png) repeat;
+ background-size:256px;min-height:100vh;padding:26px 16px 44px}
+.wrap{max-width:400px;margin:0 auto}
+a.back{display:inline-block;font-size:14px;color:var(--maroon);text-decoration:none;font-weight:700;margin-bottom:14px}
+.card{background:#FBF5E7 url(assets/paper.png) repeat;background-size:256px;border:1px solid var(--rule);
+ box-shadow:0 16px 40px rgba(70,45,20,.28);position:relative}
+.pin{position:absolute;left:50%;margin-left:-9px;top:-9px;width:18px;height:18px;border-radius:50%;
+ background:#C0392B;box-shadow:0 3px 6px rgba(40,20,5,.5),inset -3px -3px 5px rgba(0,0,0,.25),inset 3px 3px 5px rgba(255,255,255,.5)}
+.top{background:var(--maroon);color:#FBF3DE;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;
+ border-bottom:5px solid var(--gold)}
+.top .lg{background:#fff;padding:7px 10px} .top .lg img{display:block;height:26px}
+.tag{font-size:12px;font-weight:700;padding:3px 11px}
+.t-vip{background:var(--gold);color:#3A2607} .t-bsh{background:#1F5F8B;color:#EAF4FB}
+.b{padding:20px 20px 8px}
+.l{font-size:11px;letter-spacing:2px;color:var(--muted)}
+.nm{font-family:Lalezar;font-weight:400;font-size:38px;line-height:1.15;margin-top:2px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px;
+ border-top:1px solid var(--rule);padding-top:16px}
+.v{font-size:17px;font-weight:700;margin-top:2px}
+.qr{display:flex;justify-content:center;padding:18px 0 20px}
+#qr{background:#fff;padding:9px;border:1px solid var(--rule)}
+.foot{border-top:1px dashed var(--rule);padding:12px 20px 16px;font-size:12px;color:var(--muted);text-align:center}
+.btns{margin-top:18px;display:grid;gap:10px}
+.btn{display:block;padding:14px;text-align:center;text-decoration:none;font-weight:700;font-size:15px;font-family:Tajawal;
+ border:0;cursor:pointer}
+.b1{background:#111;color:#fff} .b2{background:var(--gold);color:#3A2607}
+.tip{margin-top:16px;font-size:13px;color:var(--muted);line-height:1.9;border-right:3px solid var(--gold);padding-right:12px}
+</style></head><body><div class="wrap">
+<a class="back" href="index.html">→ رجوع للسجلّ</a>
+<div class="card"><div class="pin"></div>
+ <div class="top"><div class="lg"><img src="assets/fue.png" alt="FUE"></div><span class="tag" id="rk"></span></div>
+ <div class="b"><div class="l">العضو</div><div class="nm" id="nm"></div>
+  <div class="grid">
+   <div><div class="l">سنة الميلاد</div><div class="v" id="yr"></div></div>
+   <div><div class="l">الدور في العيلة</div><div class="v" id="rl"></div></div>
+   <div><div class="l">رقم العضوية</div><div class="v" id="no"></div></div>
+   <div><div class="l">العيلة</div><div class="v">CS · FUE 2026</div></div>
+  </div>
+  <div class="qr"><canvas id="qr"></canvas></div></div>
+ <div class="foot">إحنا عيلة واحدة — وفيها كذا أم، عادي</div>
+</div>
+<div class="btns"><a class="btn b1" id="ap">أضف على Apple Wallet</a>
+<button class="btn b2" id="sv">احفظ الكارت</button></div>
+<div class="tip"><b>أندرويد:</b> من قايمة المتصفح ⋮ اختار «إضافة إلى الشاشة الرئيسية» — الكارت هيتفتح زي التطبيق من غير نت.</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script>
+var M=[{"no": "001", "name": "شهد", "year": "—", "role": "أدمن", "rank": "VIP"}, {"no": "002", "name": "إيهاب", "year": "—", "role": "أدمن", "rank": "باشا"}, {"no": "003", "name": "كريم", "year": "٢٠٠٦", "role": "جدو الكل", "rank": "باشا"}, {"no": "004", "name": "عبدالمسيح", "year": "٢٠٠٦", "role": "جدو", "rank": "باشا"}, {"no": "005", "name": "مينا حازم", "year": "٢٠٠٧", "role": "أب", "rank": "باشا"}, {"no": "006", "name": "عمار محمد", "year": "٢٠٠٧", "role": "أب", "rank": "باشا"}, {"no": "007", "name": "ولاء", "year": "٢٠٠٧", "role": "ماما الكل", "rank": "VIP"}, {"no": "008", "name": "إسلام حسين", "year": "٢٠٠٧", "role": "أب", "rank": "باشا"}, {"no": "009", "name": "نورين", "year": "٢٠٠٧", "role": "أم", "rank": "VIP"}, {"no": "010", "name": "ياسين جمال", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "011", "name": "سيف عصام", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "012", "name": "أحمد عبدالوهاب", "year": "٢٠٠٨", "role": "صاحب الشجرة", "rank": "باشا"}, {"no": "013", "name": "مريم", "year": "٢٠٠٨", "role": "الأخت الكبيرة", "rank": "VIP"}, {"no": "014", "name": "ياسمين سيد", "year": "٢٠٠٨", "role": "بنت", "rank": "VIP"}, {"no": "015", "name": "أروى أحمد", "year": "٢٠٠٨", "role": "بنت", "rank": "VIP"}, {"no": "016", "name": "جنى محمد", "year": "٢٠٠٨", "role": "بنت", "rank": "VIP"}, {"no": "017", "name": "عبدالرحمن إسماعيل", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "018", "name": "يوسف أحمد حسني", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "019", "name": "جيو", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "020", "name": "مريم أحمد", "year": "٢٠٠٨", "role": "بنت", "rank": "VIP"}, {"no": "021", "name": "مازن", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "022", "name": "هايسل", "year": "٢٠٠٨", "role": "بنت", "rank": "VIP"}, {"no": "023", "name": "مجدي صفوت", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "024", "name": "أنس أحمد", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "025", "name": "حمزة", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "026", "name": "أحمد موفق", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "027", "name": "عبدالرحمن ڤينشي", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "028", "name": "عمور", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "029", "name": "محمد ماجد", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "030", "name": "مروان إبراهيم", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "031", "name": "أندرو", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "032", "name": "عبده", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "033", "name": "أسيل إسلام", "year": "٢٠٠٨", "role": "بنت", "rank": "VIP"}, {"no": "034", "name": "حسن", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "035", "name": "علي حفظي", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "036", "name": "ندى", "year": "٢٠٠٨", "role": "بنت", "rank": "VIP"}, {"no": "037", "name": "رضوى محمد", "year": "٢٠٠٨", "role": "بنت", "rank": "VIP"}, {"no": "038", "name": "سمير عبداللطيف", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "039", "name": "بدر الحناوي", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "040", "name": "فادي أحمد", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "041", "name": "نادين", "year": "٢٠٠٨", "role": "بنت", "rank": "VIP"}, {"no": "042", "name": "يوسف علاء", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "043", "name": "منار", "year": "٢٠٠٨", "role": "بنت", "rank": "VIP"}, {"no": "044", "name": "أدهم", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "045", "name": "محمد", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "046", "name": "نور الشربيني", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "047", "name": "إيمان", "year": "٢٠٠٨", "role": "بنت", "rank": "VIP"}, {"no": "048", "name": "كرمينا", "year": "٢٠٠٩", "role": "حفيدة", "rank": "VIP"}, {"no": "049", "name": "عمر", "year": "٢٠٠٩", "role": "حفيد", "rank": "باشا"}, {"no": "050", "name": "أحمد", "year": "٢٠٠٩", "role": "حفيد", "rank": "باشا"}, {"no": "051", "name": "إياد عبد اللا", "year": "٢٠٠٩", "role": "حفيد", "rank": "باشا"}];
+var no=(new URLSearchParams(location.search)).get('no')||'013';
+var m=M.filter(function(x){return x.no===no;})[0]||M[0];
+document.getElementById('nm').textContent=m.name;
+document.getElementById('yr').textContent=m.year;
+document.getElementById('rl').textContent=m.role;
+document.getElementById('no').textContent=m.no;
+var rk=document.getElementById('rk'); rk.textContent=m.rank;
+rk.className='tag '+(m.rank==='VIP'?'t-vip':'t-bsh');
+document.title='كارت '+m.name;
+if(window.QRCode) QRCode.toCanvas(document.getElementById('qr'),'CSFUE2026|csfue-'+m.no+'|'+m.name+'|'+m.year,{width:140,margin:1});
+document.getElementById('ap').href='passes/'+m.no+'.pkpass';
+document.getElementById('sv').onclick=function(){alert('اعمل سكرين شوت للكارت 📸 أو ضيفه للشاشة الرئيسية من قايمة المتصفح');};
+</script></body></html>

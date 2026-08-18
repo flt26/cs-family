@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>سجلّ عيلة دفعة CS — جامعة المستقبل</title>
+<meta name="theme-color" content="#8E1418">
+<meta property="og:title" content="سجلّ عيلة دفعة CS">
+<meta property="og:description" content="دوّر على اسمك وافتح كارت العضوية">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Lalezar&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F4EDDE;--ink:#241A10;--maroon:#8E1418;--gold:#E0A82E;--tape:#E9DDB6;
+      --muted:#8A7358;--rule:#D9CDB4}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:Tajawal,system-ui,sans-serif;color:var(--ink);background:#E5DAC4 url(assets/paper.png) repeat;
+     background-size:256px;line-height:1.6}
+.sheet{max-width:920px;margin:0 auto;background:#FBF5E7 url(assets/paper.png) repeat;background-size:256px;
+       min-height:100vh;box-shadow:0 0 70px rgba(70,45,20,.22)}
+.head{background:var(--maroon);color:#FBF3DE;padding:24px 28px 22px;border-bottom:6px solid var(--gold);position:relative;overflow:hidden}
+
+.chip{background:#fff;display:inline-block;padding:11px 16px}
+.chip img{display:block;height:46px}
+.head h1{font-family:Lalezar;font-weight:400;font-size:clamp(32px,6.4vw,50px);line-height:1.08;margin-top:16px}
+.kicker{font-size:12px;letter-spacing:3px;color:#F0C79A;margin-top:16px}
+.head p{font-size:15px;color:#F3D9BE;margin-top:8px;max-width:54ch}
+.bar{display:flex;gap:12px;align-items:center;padding:14px 28px;border-bottom:1px solid var(--rule);
+     background:#FBF5E7;position:sticky;top:0;z-index:5}
+.bar input{flex:1;padding:11px 14px;border:1px solid var(--rule);background:#fff;font-family:Tajawal;
+           font-size:15px;color:var(--ink);outline:none}
+.bar input:focus{border-color:var(--maroon)}
+.count{font-size:13px;color:var(--muted);white-space:nowrap}
+main{padding:6px 28px 30px}
+.sec{margin-top:28px}
+.sec h2{font-family:Lalezar;font-weight:400;font-size:21px;background:var(--tape);color:#3A2A16;
+        display:inline-block;padding:4px 16px 6px;transform:rotate(-.7deg);box-shadow:2px 3px 0 rgba(90,60,25,.13)}
+.sec h2 span{font-family:Tajawal;font-size:12px;color:var(--muted);margin-right:8px}
+ul{list-style:none;margin-top:14px;display:grid;grid-template-columns:1fr;gap:0 36px}
+@media(min-width:660px){ul{grid-template-columns:1fr 1fr}}
+
+.row{display:flex;align-items:baseline;gap:9px;width:100%;max-width:460px;background:none;border:0;padding:10px 2px;
+     font-family:Tajawal;cursor:pointer;text-align:right;border-bottom:1px solid rgba(217,205,180,.6)}
+.row:hover .nm{color:var(--maroon)} .row:hover .dots{border-bottom-color:var(--maroon)}
+.num{font-size:12px;color:var(--muted);min-width:26px}
+.nm{font-size:17px;font-weight:700;white-space:nowrap}
+.dots{flex:1;border-bottom:2px dotted var(--rule);transform:translateY(-5px)}
+.tag{font-size:11px;font-weight:700;padding:2px 9px;white-space:nowrap}
+.t-vip{background:var(--gold);color:#3A2607} .t-bsh{background:#1F5F8B;color:#EAF4FB}
+.mine .nm{color:var(--maroon)} .mine .num{color:var(--maroon);font-weight:700}
+.tree{padding:0 28px;margin-top:34px;border-top:1px solid var(--rule);padding-top:26px}
+.tree h2{font-family:Lalezar;font-weight:400;font-size:20px;margin-bottom:12px}
+.tree img{width:100%;display:block;border:1px solid var(--rule)}
+footer{padding:24px 28px 44px;font-size:13px;color:var(--muted)}
+footer b{color:var(--ink)}
+.empty{padding:30px 0;color:var(--muted)}
+</style></head><body>
+<div class="sheet">
+  <header class="head">
+    <div class="chip"><img src="assets/fue.png" alt="Future University in Egypt"></div>
+    <div class="kicker">كلية الحاسبات والمعلومات · دفعة ٢٠٢٦</div>
+    <h1>سجلّ العيلة</h1>
+    <p>الهزار اللي طلع بجد — كل واحد اتحط في جيله حسب سنة ميلاده. دوّر على اسمك وافتح كارت العضوية.</p>
+  </header>
+  <div class="bar"><input id="q" placeholder="اكتب اسمك…" autocomplete="off"><span class="count" id="c"></span></div>
+  <main id="list"></main>
+  <div class="tree"><h2>الشجرة كاملة</h2><img src="assets/tree.png" alt="شجرة عيلة الدفعة" loading="lazy"></div>
+  <footer><b>إحنا عيلة واحدة — وفيها كذا أم، عادي.</b><br>البنات VIP والولاد باشا · الأسامي حسب آخر تصويت في الجروب</footer>
+</div>
+<script>
+const M=[{"no": "001", "name": "شهد", "year": "—", "role": "أدمن", "rank": "VIP"}, {"no": "002", "name": "إيهاب", "year": "—", "role": "أدمن", "rank": "باشا"}, {"no": "003", "name": "كريم", "year": "٢٠٠٦", "role": "جدو الكل", "rank": "باشا"}, {"no": "004", "name": "عبدالمسيح", "year": "٢٠٠٦", "role": "جدو", "rank": "باشا"}, {"no": "005", "name": "مينا حازم", "year": "٢٠٠٧", "role": "أب", "rank": "باشا"}, {"no": "006", "name": "عمار محمد", "year": "٢٠٠٧", "role": "أب", "rank": "باشا"}, {"no": "007", "name": "ولاء", "year": "٢٠٠٧", "role": "ماما الكل", "rank": "VIP"}, {"no": "008", "name": "إسلام حسين", "year": "٢٠٠٧", "role": "أب", "rank": "باشا"}, {"no": "009", "name": "نورين", "year": "٢٠٠٧", "role": "أم", "rank": "VIP"}, {"no": "010", "name": "ياسين جمال", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "011", "name": "سيف عصام", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "012", "name": "أحمد عبدالوهاب", "year": "٢٠٠٨", "role": "صاحب الشجرة", "rank": "باشا"}, {"no": "013", "name": "مريم", "year": "٢٠٠٨", "role": "الأخت الكبيرة", "rank": "VIP"}, {"no": "014", "name": "ياسمين سيد", "year": "٢٠٠٨", "role": "بنت", "rank": "VIP"}, {"no": "015", "name": "أروى أحمد", "year": "٢٠٠٨", "role": "بنت", "rank": "VIP"}, {"no": "016", "name": "جنى محمد", "year": "٢٠٠٨", "role": "بنت", "rank": "VIP"}, {"no": "017", "name": "عبدالرحمن إسماعيل", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "018", "name": "يوسف أحمد حسني", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "019", "name": "جيو", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "020", "name": "مريم أحمد", "year": "٢٠٠٨", "role": "بنت", "rank": "VIP"}, {"no": "021", "name": "مازن", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "022", "name": "هايسل", "year": "٢٠٠٨", "role": "بنت", "rank": "VIP"}, {"no": "023", "name": "مجدي صفوت", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "024", "name": "أنس أحمد", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "025", "name": "حمزة", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "026", "name": "أحمد موفق", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "027", "name": "عبدالرحمن ڤينشي", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "028", "name": "عمور", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "029", "name": "محمد ماجد", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "030", "name": "مروان إبراهيم", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "031", "name": "أندرو", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "032", "name": "عبده", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "033", "name": "أسيل إسلام", "year": "٢٠٠٨", "role": "بنت", "rank": "VIP"}, {"no": "034", "name": "حسن", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "035", "name": "علي حفظي", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "036", "name": "ندى", "year": "٢٠٠٨", "role": "بنت", "rank": "VIP"}, {"no": "037", "name": "رضوى محمد", "year": "٢٠٠٨", "role": "بنت", "rank": "VIP"}, {"no": "038", "name": "سمير عبداللطيف", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "039", "name": "بدر الحناوي", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "040", "name": "فادي أحمد", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "041", "name": "نادين", "year": "٢٠٠٨", "role": "بنت", "rank": "VIP"}, {"no": "042", "name": "يوسف علاء", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "043", "name": "منار", "year": "٢٠٠٨", "role": "بنت", "rank": "VIP"}, {"no": "044", "name": "أدهم", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "045", "name": "محمد", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "046", "name": "نور الشربيني", "year": "٢٠٠٨", "role": "ابن", "rank": "باشا"}, {"no": "047", "name": "إيمان", "year": "٢٠٠٨", "role": "بنت", "rank": "VIP"}, {"no": "048", "name": "كرمينا", "year": "٢٠٠٩", "role": "حفيدة", "rank": "VIP"}, {"no": "049", "name": "عمر", "year": "٢٠٠٩", "role": "حفيد", "rank": "باشا"}, {"no": "050", "name": "أحمد", "year": "٢٠٠٩", "role": "حفيد", "rank": "باشا"}, {"no": "051", "name": "إياد عبد اللا", "year": "٢٠٠٩", "role": "حفيد", "rank": "باشا"}];
+const G=[['الإدارة','—'],['الجدود','٢٠٠٦'],['الأمهات والآباء','٢٠٠٧'],['العيال','٢٠٠٨'],['الأحفاد','٢٠٠٩']];
+const list=document.getElementById('list'),q=document.getElementById('q'),c=document.getElementById('c');
+function render(f){
+  f=f||''; list.innerHTML=''; var total=0;
+  G.forEach(function(g){
+    var t=g[0], y=g[1];
+    var it=M.filter(function(m){return m.year===y && (!f || m.name.indexOf(f)>-1);});
+    if(!it.length) return; total+=it.length;
+    var s=document.createElement('section'); s.className='sec';
+    s.innerHTML='<h2>'+t+'<span>'+it.length+'</span></h2>';
+    var ul=document.createElement('ul');
+    it.forEach(function(m){
+      var li=document.createElement('li');
+      var b=document.createElement('button');
+      b.className='row'+(m.name==='أحمد عبدالوهاب'?' mine':'');
+      b.innerHTML='<span class="num">'+m.no+'</span><span class="nm">'+m.name+'</span>'+
+        '<span class="dots"></span><span class="tag '+(m.rank==='VIP'?'t-vip':'t-bsh')+'">'+m.rank+'</span>';
+      b.onclick=function(){location.href='card.html?no='+m.no;};
+      li.appendChild(b); ul.appendChild(li);
+    });
+    s.appendChild(ul); list.appendChild(s);
+  });
+  c.textContent=total+' اسم';
+  if(!total) list.innerHTML='<p class="empty">مفيش حد بالاسم ده.</p>';
+}
+q.addEventListener('input',function(e){render(e.target.value.trim());});
+render();
+</script></body></html>
